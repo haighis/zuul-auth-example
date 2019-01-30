@@ -1,0 +1,6 @@
+server:
+  port: 3400
+spring:
+  application:
+    name: auth
+shuaicj.security.jwt.secret: otherpeopledontknowit    

@@ -1,0 +1,5 @@
+server:
+  port: 4400
+spring:
+  application:
+    name: backend

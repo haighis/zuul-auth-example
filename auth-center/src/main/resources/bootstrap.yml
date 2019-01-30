@@ -1,0 +1,12 @@
+spring:
+  profiles:
+    active: local  
+  cloud:
+    config:
+      discovery:
+        enabled: false
+eureka:
+  client:
+    enabled: false
+    registerWithEureka: false
+    fetchRegistry: false

@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        serviceId: config-server
+  
+eureka:
+  client:
+    enabled: true
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+       defaultZone: http://localhost:28761/eureka

@@ -1,0 +1,47 @@
+server:
+  port: 26000
+  timeoutMS: &timeoutMS 900000
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: ${SERVICE_DISCOVERY_URL}
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: *timeoutMS
+
+ribbon:
+  MaxAutoRetries: 2
+  MaxAutoRetriesNextServer: 2
+  OkToRetryOnAllOperations: true
+  ReadTimeout: *timeoutMS
+  ConnectTimeout: *timeoutMS
+
+zuul:
+  retryable: true
+  host:
+    connect-timeout-millis: *timeoutMS
+    socket-timeout-millis: *timeoutMS
+  routes:
+    auth-center:
+      path: /login/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      stripPrefix: false
+      serviceId: auth
+    backend-service:
+      path: /backend/**
+      serviceId: backend
+
+shuaicj.security.jwt.secret: otherpeopledontknowit
